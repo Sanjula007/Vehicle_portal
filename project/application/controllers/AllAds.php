@@ -15,7 +15,7 @@ class AllAds extends CI_Controller {
 		
 			
 	}
-	//view first page Advertisements
+	//view first page of Advertisements
 	public function index(){
 		$this->load->library('session');
 		$this->load->helper('url');
@@ -63,7 +63,7 @@ class AllAds extends CI_Controller {
 		*view the Advertisements that in page by categories
 		*$page - page number
 		*$sort- sorting type ( date , popularity )
-		* $category- cate name (car,van....)
+		* $category- category  name (car,van....)
 	*/
 	
 	public function ads_page_category($category,$page,$sort){
@@ -130,7 +130,6 @@ class AllAds extends CI_Controller {
 		$this->load->view('header');
 		$this->showCategory();
 		$this->load->view("myAds_view",$data);
-		//$this->load->view('AdsPages_view',$data);
 		$this->load->view('footer');
 		
 		
@@ -141,34 +140,19 @@ class AllAds extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->view('header');
 		$this->showCategory();
-		//$this->load->view('categories');
 		$this->load->model('category_model');
 		$this->load->helper('form');
 		$category=$this->category_model->allCategory();
 		$data['category']=$category;
 		$this->load->view("AdvancedSearch_view",$data);
 		$this->load->view('footer');
-		/*
 		
-		$this->showCategory();
-		$this->load->model("AllAds_model","Ads");
-		$car=$this->Ads->limit_Ads($page=1,$this->mapp,$sort='date');
-		$count=$this->Ads->ads_count();
-		$data['vehicle']=$car;
-		$data['count']=$count;
-		$data['sort']=$sort;
-		$data['pages']=$this->Ads->set_pagecount($count,$this->mapp);
-		$data['type']='All';
-		$this->load->view("AllAds_view",$data);
-		
-		$this->load->view('AdsPages_view',$data);*/
 		
 	}
 	
 	function advancedSearch(){
 		$this->load->library('session');
 		$this->load->helper('url');;	
-		//echo form_error('price');
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('max_price', 'max_price', 'required|numeric');
 		$this->form_validation->set_rules('min_price', 'min_price', 'required|numeric');
@@ -223,16 +207,7 @@ class AllAds extends CI_Controller {
 		$this->load->helper('url');;
 		$this->load->library('session');	
 		$this->load->library('form_validation');	
-		//echo form_error('price');
-		/*
-		$this->form_validation->set_rules('max_price', 'max_price', 'required|numeric');
-		$this->form_validation->set_rules('min_price', 'min_price', 'required|numeric');
-		$this->form_validation->set_rules("condition", "condition", "required");
-		
-		if ($this->form_validation->run() == FALSE) {
-		echo $this->input->post('min_price');
-		$this->showAdSearch();
-		}*/
+	
 		
 			$data=array(
 			'category'=>$this->session->userdata('category') ,
