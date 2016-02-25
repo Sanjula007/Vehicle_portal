@@ -27,7 +27,7 @@ class newsletter_model extends CI_Model
         $config['smtp_port']    = ' 467';
 
         $config['smtp_timeout'] = '7';
-        $config['smtp_pass'] = 'sanjula93107170'; //$from_email password
+        $config['smtp_pass'] = '12345678'; //$from_email password
         $config['mailtype'] = 'html';
         $config['charset'] = 'iso-8859-1';//'utf-8';
         $config['wordwrap'] = TRUE;
