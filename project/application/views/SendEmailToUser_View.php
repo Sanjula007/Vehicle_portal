@@ -47,7 +47,7 @@ width:180px;
 </div>
 <div>
 <div class='center' style='background-color:#E0E0E0; box-shadow: 2px 2px 5px grey; width:100%; min-height:60%; padding-top:5%;'>
-
+	<?php echo $message;?>
 	<form action ="<?php echo site_url().'/sendemail/send';?>" method="post" name='searchform' id='searchform'>
 	<table align='center' class="center" >
 		

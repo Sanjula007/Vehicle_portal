@@ -1,31 +1,37 @@
 <style>
 
 .tables{
+	align:center;
+	float:center;
 	font-family: 'RokkittRegular';
-	font-size:16px;
+	font-size:20px;
 	font-weight:bold;
 	color:#636363;
 	margin:15px 0 0;
 	line-height:21px;
+	padding-left:40%
+}
+.tr .td{
+	padding:10px;
 }
 </style>
 
 <body >
-<div align="center"class="body" style=" background-color: #efeff5; width:78%; box-shadow:2px 2px 5px grey;">
+<div align="center" class="body" style=" background-color: #efeff5; width:77%; min-height:100%; box-shadow:2px 2px 5px grey;">
     <div  
         <div >
             
                 <div >
 				
 					
-					<a href="<?php echo site_url('AllAds/'); ?>">AllAds</a>
+					
                     <?php for ($i = 0; $i < count($vehicle); $i++) { ?>
 					<div class="cover">
 					<img src="<?php echo base_url()."/uploads/".$vehicle[$i]->image;?>" style="max-height: 300px;">
 				</div>
 				<p>
 					
-                 <table class='tables'>   
+                 <table  align="center" class='tables'>   
                 <tr>
                 	<td><label class="title">Category</label></td>
                 	<td><span class="value"><?php echo stripcslashes($vehicle[$i]->category) ?></span><br></td>

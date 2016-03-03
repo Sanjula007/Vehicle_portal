@@ -1,4 +1,6 @@
-<div class="body" style=" background-color: #efeff5; width:77%; min-height:100%; box-shadow:2px 2px 5px grey;float:center;">
+
+
+<div class="body" style=" background-color: #efeff5; width:77%; min-height:100%; box-shadow:2px 2px 5px grey;float:center; z-index:40">
 <?php if(count($vehicle)!=0){
 		
 		echo '<h3 align="right" > no of results : '. $count;
@@ -23,8 +25,10 @@ else{
 }
 ?>	
 <div class="container" >
-	<?php for ($i = 0; $i < count($vehicle); $i++) { ?>
-    <div class="card-container" style='padding:2%; float:center;'>
+	<?php 
+	//start the for loop for load advertisments
+	for ($i = 0; $i < count($vehicle); $i++) { ?>
+    <div class="card-container" style='padding:2%; float:center; z-index:-1;'>
         <div class="card">
             <div class="front">
                 <div class="cover">
@@ -80,5 +84,5 @@ else{
             </div> <!-- end back panel -->
         </div> <!-- end card -->
     </div> <!-- end card-container -->
-    <?php } ?>
+    <?php } //end of the for loop?>
 </div>

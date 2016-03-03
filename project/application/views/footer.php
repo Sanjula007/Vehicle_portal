@@ -1,5 +1,5 @@
 </div>
-<div class="footer" style='width:99%; background-color:skyblue;'>
+<div class="footer" style='width:99%; background-color:#8585ad; box-shadow: 2px 2px 5px;'>
 				<ul>
 					<li><a href="<?php echo site_url('home'); ?>">Home</a></li>
 					<li><a href="<?php echo site_url('about'); ?>">About</a></li>

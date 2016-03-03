@@ -1,3 +1,5 @@
+<!--view the categories-->
+
 <div class="category" style="max-width:20%">
 			<h3 style='padding-left: 20px'>    Categories</h3>
 			<?php for ($i = 0; $i < count($category); $i++) { ?>

@@ -1,3 +1,5 @@
+
+<!--view users advertisments-->
 <script>
 function checkDelete() {
     return confirm("Do you want to delete the ad..!") 
@@ -8,7 +10,7 @@ function checkUpdate() {
 }
 </script>
 
-<div class="body" style=" background-color: #efeff5; min-width:78.2%; box-shadow:2px 2px 5px grey; float:right;">
+<div class="body" style=" background-color: #efeff5; width:77%; box-shadow:2px 2px 5px grey; float:right;">
 <?php if(count($vehicle)!=0){
 	
 	if($type=='All'){

@@ -1,4 +1,4 @@
-
+<!--view of the Advanced search-->
 <style>
 td{
 	 width: 25px;
@@ -118,10 +118,10 @@ $data_model = array(
 			);
 ?>
 
-<div  >
+<div style=" background-color:#909090 ;" >
 
 	<form action ="<?php echo site_url().'/allAds/advancedSearch';?>" method="post" name='searchform' id='searchform'>
-	<table  class="center1" style=" background-color:#909090 ;width:80%; max-widht:100%;min-height:350px"><tr  style="width: 100%;"><td  >
+	<table  class="center1" style=" background-color:#909090 ;width:80%; max-widht:80%;min-height:350px"><tr  style="width: 100%;"><td  >
 	<center><h3 style='font-size:30px'>Advanced Search</h3>
 	<table table align='center' class="center" style='max-widht:100%'>
 		
@@ -164,6 +164,9 @@ $data_model = array(
 				
 				<?php for($year=date('Y');$year>=1900;$year--){?>
 				<option value="<?php echo $year;?>" <?php echo set_select('max_year', $year); ?>><?php echo $year;?></option>
+				
+				
+				
 				<?php } ?>
  				</select></td>
 		</tr>
@@ -185,7 +188,7 @@ $data_model = array(
 			
 		</tr>
 		</table>
-		</td><td style="width: 100%;"><img src="<?php echo base_url()."/images/cars.png"?>" style="max-width: 100%; flaot:right"></td></tr>
+		</td><td style="width: 100%;"><img src="<?php echo base_url()."/images/cars.png"?>" style="width: 70%;float:center;"></td></tr>
 		<tr ><td><input type='submit' name='submit' value='Search' align='center'  class='submit'></td><td></td></tr>
 		</table></center>
 	</form>

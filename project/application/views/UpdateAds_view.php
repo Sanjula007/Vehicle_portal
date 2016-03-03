@@ -15,7 +15,7 @@ function checkUpdate() {
 	<div class="content">
 	<h2 id="form_head">Vehicle Information</h2>
 	
-	<div class="form_input">
+	<div class="form_input" style="background-color:lightgrey; ">
 	<?php for ($i = 0; $i < count($adsdata); $i++) { 
 		echo form_open_multipart('UpdateAds/error/'.$adsdata[$i]->adID);
 	?>
@@ -34,7 +34,7 @@ function checkUpdate() {
 				echo form_input($dataid);
 			?>	
 				
-				<table>   
+				<table style='padding-left :10%'>   
 									<tr>
 										<td style="width:200px"><label class="title">Category</label></td>
 										<td><span class="value"><?php echo stripcslashes($adsdata[$i]->category) ?></span><br></td>
@@ -54,7 +54,7 @@ function checkUpdate() {
 										<td><label class="title">Condition</label></td>
 										<td><span class="value"><?php echo stripcslashes( $adsdata[$i]->vCondition) ?> </span><br></td>
 									</tr><tr>	
-										<td><label class="title">fuels</label></td>
+										<td><label class="title">Fuel</label></td>
 										<td><span class="value"><?php echo stripcslashes($adsdata[$i]->fuel) ?></span><br></td>
 									</tr></td><br>
 									</tr>	
@@ -65,7 +65,7 @@ function checkUpdate() {
 			echo form_fieldset('Good Description Make Buyers Good Impression');?>
 			<table cellpadding="2" cellspacing="4" class="form_table" style="width: 75%">
 				<tr>
-					
+			<td>		
 			<?php echo form_label('Description');
 			
 			echo "<div class='textarea_input'>";
@@ -75,7 +75,7 @@ function checkUpdate() {
 			'rows' => 12,
 			'cols' => 50
 			);?>
-			</tr>
+			</td>
 			<td>
 			<?php echo form_textarea($data_des, set_value('description'));
 			echo form_error('description','<h3 style=\'color: red;\'>','</h3>');
@@ -127,9 +127,9 @@ function checkUpdate() {
 			
 			
 			<h2 id="form_head">Your Information</h2>
-			<div class="form_input">
+			<div class="form_input" style="background-color:lightgrey; >
 			<?php
-			
+			echo'<h2 id="form_head">Your Information</h2>';
 			echo form_fieldset('Seller Name');						
 			echo '<table><tr><td style=\'width:200px\'>'.form_label('Name');
 			
@@ -140,8 +140,8 @@ function checkUpdate() {
 			'class' => 'input_box',
 			'placeholder' => 'Please Enter Name'
 			);
-			echo '<td>'.form_input($data_name);
-			echo form_error('usr_name','<h3 style=\'color: red;\'>','</h3>').'</td></td></tr></table>';
+			echo '</td><td>'.form_input($data_name);
+			echo form_error('usr_name','<h3 style=\'color: red;\'>','</h3>').'</td></tr></table>';
 			echo form_fieldset_close();
 			
 			

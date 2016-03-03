@@ -44,7 +44,9 @@ width:250px;
 
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-?><!DOCTYPE html>
+$this->load->library('session');
+?>
+<!DOCTYPE html>
 
 <html>
 	<head>
@@ -62,9 +64,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		
 		<div class="page">
 		
-			<div class="header">
+			<div class="header" style='min-width:1024px;'>
 				<a href="<?php echo site_url('home'); ?>" id="logo"><img src="<?php echo base_url(); ?>images/logo.gif" alt=""/></a>
-				<a href="<?php echo site_url('home'); ?>" id="logo"><img src="<?php echo base_url(); ?>images/headerVehicles.png" alt="" style="align: center; height:100%;"/></a>
+				<img src="<?php echo base_url(); ?>images/headerVehicles.png" alt="" style="align: right; height:100%;"/>
 				<!--
 				<ul>
 					<li class="selected"><a href="<?php echo site_url('home'); ?>">Home</a></li>
@@ -79,17 +81,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		
 		<div id='cssmenu'>
 <ul style='padding-left: 20%;'>
-   <li><a href='<?php echo site_url('test/'); ?>'>Home</a></li>
+   <li><a href='<?php echo site_url('home/'); ?>'>Home</a></li>
    <li class='active'><a href='<?php echo site_url('AllAds/'); ?>'>Advertisments</a></li>
    <li><a href='<?php echo site_url('AllAds/advancedSearch/'); ?>'>Advanced Search</a></li>
-   <li><a href='<?php echo site_url('AllAds/advancedSearch/'); ?>'>Post Ads</a></li>
+   <li><a href='<?php echo site_url('Addnewad/'); ?>'>Post Ads</a></li>
    <li><a href='#'>About Us</a></li>
    <li><a href='#'>Contact Us</a></li>
    <li><a href='#'>My Account</a>
-	<ul>
-               <li><a href='#'>log In</a></li>
-               <li><a href='#'>Create an Account</a></li>
+	<ul style='z-index:5;'>
+               <li style='z-index:5;'><a href='<?php echo site_url('login');?>'>log In</a></li>
+               <li style='z-index:5;'><a href='#'>Create an Account</a></li>
+			   <li style='z-index:5;'><a href="<?php echo site_url('AllAds/view_myads/1'/*.$this->session->userdata('id')*/); ?>">My Ads</a></li>
     </ul>
    </li>
+     <li><a href='#'>Admin</a>
+	<ul style='z-index:5;'>
+               <li style='z-index:5;'><a href='#'>log In</a></li>
+               <li style='z-index:5;'><a href="<?php echo site_url('sendemail'); ?>">Send email to user</a></li>
+			   <li style='z-index:5;'><a href="<?php echo site_url('category/categoryForm'); ?>">Manage Category</a></li>
+    </ul>
+   </li>
+   
 </ul>
 </div>

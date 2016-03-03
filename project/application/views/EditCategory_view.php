@@ -1,4 +1,7 @@
-
+<!--
+	-view all categories
+	-update the category
+	-delete the category-->
 <script>
 function checkUpdate() {
     return confirm("Do you want to Update the category..!") 
@@ -8,7 +11,7 @@ function checkDelete() {
 }
 </script>
 
-<div class='center' style='background-color:#E0E0E0; min_height:100%; box-shadow: 2px 2px 5px grey;'>
+<div class='center' style='background-color:#E0E0E0; min_height:100%; box-shadow: 2px 2px 5px grey; width:75%;'>
 
 
                     
@@ -21,7 +24,7 @@ function checkDelete() {
 				 <?php for ($i = 0; $i < count($category); $i++) { ?>
                 <tr>
                 	<td ><label class="title"><?php echo stripcslashes($category[$i]->name) ?></label></td>
-					<td><label class="title"><a href="<?php echo site_url('category/showCategory/'.$category[$i]->id); ?>" onclick="return checkUpdate();">Update</a></label></td>
+					<td><label class="title"><a href="<?php echo site_url('category/showCategory/'.$category[$i]->id.'/-'); ?>" onclick="return checkUpdate();">Update</a></label></td>
 					<td><label class="title"><a href="<?php echo site_url('category/deleteCategory/'.$category[$i]->id); ?>" onclick="return checkDelete();">delete</a></label></td>
                 	
 				</tr>
