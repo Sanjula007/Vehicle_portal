@@ -26,9 +26,9 @@ class FullAds extends CI_Controller {
 	}
 	/*
 		*adsinfo function for show All information of the advetisments
-		*
+		**@param int $data use to send advetisment id
 	*/
-	public function adsinfo($data){
+	public function adsinfo( $data ){
 		
 		$this->load->helper('url');
 		//load the header view
@@ -46,25 +46,7 @@ class FullAds extends CI_Controller {
 		$this->load->view('footer');
 	}
 	/*
-		*adsinfo function for show All information of the advetisments
-		*
-	*/
-	/*public function Category($category){
-		
-		$this->load->helper('url');
-		$this->load->view('header');
-		$this->showCategory();
-		$this->load->model("Ads");
-		$car=$this->Ads->allcars();
-		
-		$data['carss']=$car;
-		$this->load->view("body",$data);
-		$data1['pages']=$this->Ads->set_pagecount($this->mapp);
-		$this->load->view('AdsPages_view',$data1);
-	}*/
-	/*
-		*showCategory function for show All Categroies that available
-		*
+		*use to view all category ina view 
 	*/
 	function showCategory(){
 		//load the category model
@@ -79,9 +61,9 @@ class FullAds extends CI_Controller {
 	}
 	/*
 		*setNoOfViews function to set no Of Views from one when ad is loaded 
-		*
+		*@param int $adsid -use to send advertisment id to function
 	*/
-	function setNoOfViews($adsid){
+	function setNoOfViews( $adsid ){
 		//load model
 		$this->load->model('FullAds_model');
 		//set of of views

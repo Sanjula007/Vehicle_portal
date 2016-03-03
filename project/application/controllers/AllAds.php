@@ -25,10 +25,10 @@ class AllAds extends CI_Controller {
 	}
 	/*
 		*view the Advertisements that in page 
-		*$page - page number
-		*$sort- sorting type ( date , popularity )
+		*@param int $page - page number
+		*@param int $sort- sorting type ( date , popularity )
 	*/
-	public function ads_page($page,$sort){
+	public function ads_page( $page, $sort ){
 		
 		$this->load->helper('url');
 		//load the AllAds_model model 
@@ -61,12 +61,12 @@ class AllAds extends CI_Controller {
 	}
 	/*
 		*view the Advertisements that in page by categories
-		*$page - page number
-		*$sort- sorting type ( date , popularity )
-		* $category- category  name (car,van....)
+		*@param int $page - page number
+		*@param int $sort- sorting type ( date , popularity )
+		*@param string $category- category  name (car,van....)
 	*/
 	
-	public function ads_page_category($category,$page,$sort){
+	public function ads_page_category( $category, $page, $sort ){
 		
 		$this->load->helper('url');
 		
@@ -108,8 +108,12 @@ class AllAds extends CI_Controller {
 		$this->load->view('load_category_view',$data);
 		
 	}
-	
-	function view_myads($id){
+	/*
+		*view myads function use to show that advertismet that user has posted
+		*@param int $id use toget userid
+		*
+	*/
+	function view_myads( $id ){
 		
 		
 		$this->load->helper('url');
@@ -134,7 +138,9 @@ class AllAds extends CI_Controller {
 		
 		
 	}
-	
+	/*
+		*use to show advanced search page to user
+	*/
 	function showAdSearch(){
 		
 		$this->load->helper('url');
@@ -150,9 +156,14 @@ class AllAds extends CI_Controller {
 		
 	}
 	
+	
+	/*
+		*to show advanced search result to user
+		*validate the user inputs
+	*/
 	function advancedSearch(){
 		$this->load->library('session');
-		$this->load->helper('url');;	
+		$this->load->helper('url');	
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('max_price', 'max_price', 'required|numeric');
 		$this->form_validation->set_rules('min_price', 'min_price', 'required|numeric');
@@ -201,8 +212,11 @@ class AllAds extends CI_Controller {
 			
 		}
 	}
-	
-	function advancedSearchPage($page){
+	/*
+		*to show advanced search result to user by pags 
+		*validate the user inputs
+	*/
+	function advancedSearchPage( $page ){
 		
 		$this->load->helper('url');;
 		$this->load->library('session');	
@@ -244,6 +258,8 @@ class AllAds extends CI_Controller {
 			
 		
 	}
+	
+
 	
 	
 	

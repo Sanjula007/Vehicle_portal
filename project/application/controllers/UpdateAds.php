@@ -16,24 +16,30 @@ class UpdateAds extends CI_Controller {
 	
 		
 	}
-	
+	/*
+		*load the update advertisment view
+	*/
 	function updateAd($adsid){
 			
     	$this->load->helper('url');
 		$this->load->helper('form');
+		//load the model
 		$this->load->model("EditAds_model");
-		
+		//get the Adversiment data
 		$adsdata=$this->EditAds_model->getAdsInfo($adsid);
 		$ads['adsdata']=$adsdata;
-    	$this->load->model('insert_model');
     	$this->load->helper('url');
 		$this->load->helper('form');
+		//load the view
 		$this->load->view('header');
 		$this->load->view('updateAds_view',$ads);
 		$this->load->view('footer');
 		
 	}
-	
+	/*
+		*delete an advertisement by id given
+		**@param int$ id -use to get advertisment id to ta function
+	*/
 	function deleteAds($id){
 		
 		//delete the data from database
@@ -50,7 +56,11 @@ class UpdateAds extends CI_Controller {
 		
 	}
 	
-		
+	/*
+		*vaildate the user inputs
+		*update the advertisment
+		*@param int $adsid -use to get advertisment id to function
+	*/	
 	function error($adsid)
 	{
 		
@@ -63,52 +73,30 @@ class UpdateAds extends CI_Controller {
 		
 		
 		
-		//$this->form_validation->set_rules('select_cat', 'select_cat', 'required|callback_select_validate3');
-		//$this->form_validation->set_rules('select_mod', 'select_mod', 'required|callback_select_validate1');
-		//$this->form_validation->set_rules('model_name', 'Model', 'required|min_length[3]|max_length[15]');
-		//$this->form_validation->set_rules('model_year', 'Model Year', 'required|regex_match[/^[0-9]{4}$/]|greater_than[1850]|less_than[2016]');
-		//$this->form_validation->set_rules('select', 'select', 'required|callback_select_validate2');
-		//$this->form_validation->set_rules('mileage', 'Mileage', 'required|min_length[4]|max_length[8]|integer');
-		$this->form_validation->set_rules('description', 'Description', 'required|min_length[5]');
-		$this->form_validation->set_rules('price', 'Price', 'required|min_length[4]|max_length[12]|integer');
-		$this->form_validation->set_rules('usr_name', 'Username', 'required|min_length[5]|max_length[15]');
-		$this->form_validation->set_rules('usr_email', 'Email', 'required|valid_email');
-		$this->form_validation->set_rules('phone_num', 'Contact No.', 'required|regex_match[/^[0-9]{10}$/]');
-		$this->form_validation->set_rules('address', 'Address', 'required|min_length[10]|max_length[50]');
+		//vaildate the user inputs 
+		$this->form_validation->set_rules('description', 'Description', 'required|min_length[5]');				//	validate the description	
+		$this->form_validation->set_rules('price', 'Price', 'required|min_length[4]|max_length[12]|integer');	//	vaildate the price
+		$this->form_validation->set_rules('usr_name', 'Username', 'required|min_length[4]|max_length[15]');		//	vaildate the contect name
+		$this->form_validation->set_rules('usr_email', 'Email', 'required|valid_email');						//	vaildate the email
+		$this->form_validation->set_rules('phone_num', 'Contact No.', 'required|regex_match[/^[0-9]{10}$/]');	//	vaildate the phone number`
+		$this->form_validation->set_rules('address', 'Address', 'required|min_length[5]|max_length[50]');		//	vaildate the Address
 		
+		
+		//if vaildations are flase
 		if ($this->form_validation->run() == FALSE) {
 		$this->updateAd($adsid);
-		} else{
-		echo "<script>alert('Updated Successfully....!!!! ');</script>";
+		} 
+		//if vaildations are ture update the Adversiment
+		else{
 		
 		
+		//load the model
 		$this->load->model('files_model');
+		//upload the image to the upload dir
 		$image= $this->files_model->do_upload($adsid);
 		
-		/*$cat = $this->input->post('select_cat');
-		$brand = $this->input->post('select_mod');
-		$modName = $this->input->post('model_name');
-		$yr = $this->input->post('model_year');
-		$vCon = $this->input->post('select');
-		$mile = $this->input->post('mileage');
-		$transm = $this->input->post('trans');
-		$fuel = $this->input->post('fuel');
-		$des = $this->input->post('description');
-		$pr = $this->input->post('price');
-		$uN = $this->input->post('usr_name');
-		$uE = $this->input->post('usr_email');
-		$uP = $this->input->post('phone_num');
-		$uA = $this->input->post('address');*/
-		
+		//Add data to data array to send to model
 		$data = array(
-		//'category' => $this->input->post('select_cat'),
-		//'brand' => $this->input->post('select_mod'),
-		//'modelName' => $this->input->post('model_name'),
-		//'year' => $this->input->post('model_year'),
-		//'vCondition' => $this->input->post('select'),
-		//'mileage' => $this->input->post('mileage'),
-		//'transmission' => $this->input->post('trans'),
-		//'fuel' => $this->input->post('fuel'),
 		'description' => $this->input->post('description'),
 		'price' => $this->input->post('price'),
 		'uName' => $this->input->post('usr_name'),
@@ -117,31 +105,29 @@ class UpdateAds extends CI_Controller {
 		'uAddress' => $this->input->post('address'),
 		'image' => $image
 		);
-		//'transmission' => $this->input->post('dmobile')
 		
+		//load the model 
 		$this->load->model('EditAds_model');
 		$this->EditAds_model->updateAds($adsid,$data);
-		//$this->insert_model->form_insert();
-		//$data1['message'] = 'Data Inserted Successfully. Your Ad will be Post in 48 hours.';
-		//Loading View
+		
+		//show the message 
+		echo "<script>alert('Updated Successfully....!!!! ');</script>";
+		
+		//Loading Adversiment view
 		redirect('/FullAds/adsinfo/'.$adsid, 'refresh');
-		$this->changeToFullAds($adsid);
-		/*$this->load->view('header');
-		$adsdata=$this->EditAds_model->getAdsInfo($adsid);
-		$data1['adsdata']=$adsdata;
-		$this->load->view('UpdateAds_view',$data1);
-		$this->load->view('footer');*/
+		
+		
 		
 		}
     
 	
 	}
 	
-	
+	/*
 	function changeToFullAds($id){
 		
 		$this->load->controller('Fullads');
 	}
-	
+	*/
 
 }
