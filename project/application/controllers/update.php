@@ -1,16 +1,33 @@
     <?php  
-       class home extends CI_Controller  
+       class update extends CI_Controller  
        {  
-          public function index()  
-          {  
-             //load the database  
-             $this->load->database();  
-             //load the model  
-             $this->load->login('select');  
-             //load the method of model  
-             $data['h']=$this->select->select();  
-             //return the data in view  
-             $this->load->view('select_view', $data);  
-          }  
+          
+		  	public function index(){
+		  		
+				
+							$this->load->model("user");
+				
+							$data['posts'] = $this->update_retrive($username);
+
+						$this->load->view('select_view',$data);
+						
+				
+		  	}
+		  
+		  
+		  
+		  
+		  public function update_retrive()
+			{
+			$username = $this->input->post('username');
+			$this->load->model("user");
+			$d=$this->user->update_retrive($username);
+			$data['posts'] = $d;
+			$this->load->view('select_view',$data);
+			}
+	
+		  
+		  
+		  
        }  
     ?>  
