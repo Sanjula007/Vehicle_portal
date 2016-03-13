@@ -1,0 +1,1 @@
+<h2> <?php echo "email has been sent"; ?></h2>
