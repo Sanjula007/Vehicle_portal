@@ -51,7 +51,7 @@ class AllAds extends CI_Controller {
 		//view the header
 		$this->load->view('header');
 		//view the categories
-		$this->showCategory();
+		$this->show_Category();
 		
 		$this->load->view("AllAds_view",$data);
 		$this->load->view('AdsPages_view',$data);
@@ -87,7 +87,7 @@ class AllAds extends CI_Controller {
 		
 		//load the views
 		$this->load->view('header');
-		$this->showCategory();
+		$this->show_Category();
 		$this->load->view("AllAds_view",$data);
 		$this->load->view('AdsPages_view',$data);
 		$this->load->view('footer');
@@ -95,14 +95,14 @@ class AllAds extends CI_Controller {
 		
 	}
 	/*
-		*showCategory function for show All Categroies that available
+		*show_Category function for show All Categroies that available
 		*
 	*/
-	function showCategory(){
+	function show_Category(){
 		//load the category model
 		$this->load->model('category_model');
 		//get All Categories
-		$category=$this->category_model->allCategory();
+		$category=$this->category_model->all_Category();
 		$data['category']=$category;
 		//send categories to view and load it
 		$this->load->view('load_category_view',$data);
@@ -132,7 +132,7 @@ class AllAds extends CI_Controller {
 		
 		
 		$this->load->view('header');
-		$this->showCategory();
+		$this->show_Category();
 		$this->load->view("myAds_view",$data);
 		$this->load->view('footer');
 		
@@ -141,16 +141,33 @@ class AllAds extends CI_Controller {
 	/*
 		*use to show advanced search page to user
 	*/
-	function showAdSearch(){
+	function show_Ad_Search(){
+		//load the AllAds_model model 
+		$this->load->model("AllAds_model","Ads");
+		
+		//get Ad information for the page number
+		$car=$this->Ads->limit_Ads(1,$this->mapp,'popularity');
+		
+		// get number of Advertisements
+		$count=$this->Ads->ads_count();
+		
+		//data array for send data to AllAds_view
+		$data['vehicle']=$car; 			//vehicle information
+		$data['count']=$count;			//Advertisements count
+		$data['sort']='popularity';			//sorting type
+		$data['pages']=$this->Ads->set_pagecount($count,$this->mapp); //get the no of pages that have
+		$data['type']='All'; 
 		
 		$this->load->helper('url');
 		$this->load->view('header');
-		$this->showCategory();
+		$this->show_Category();
 		$this->load->model('category_model');
 		$this->load->helper('form');
-		$category=$this->category_model->allCategory();
+		$category=$this->category_model->all_Category();
 		$data['category']=$category;
 		$this->load->view("AdvancedSearch_view",$data);
+		$this->load->view("AllAds_view",$data);
+		$this->load->view('AdsPages_view',$data);
 		$this->load->view('footer');
 		
 		
@@ -161,7 +178,7 @@ class AllAds extends CI_Controller {
 		*to show advanced search result to user
 		*validate the user inputs
 	*/
-	function advancedSearch(){
+	function advanced_Search(){
 		$this->load->library('session');
 		$this->load->helper('url');	
 		$this->load->library('form_validation');
@@ -174,7 +191,7 @@ class AllAds extends CI_Controller {
 		
 		if ($this->form_validation->run() == FALSE) {
 		
-		$this->showAdSearch();
+		$this->show_Ad_Search();
 		}
 		else{
 			$data=array(
@@ -189,18 +206,18 @@ class AllAds extends CI_Controller {
 			);
 			$this->session->set_userdata($data);
 		$this->load->model("AllAds_model",'ads');
-		$vehicle=$this->ads->advancedSearch($data,1,$this->mapp);
-		self::$adSearchQ=$this->ads->getSearchQuery($data);
+		$vehicle=$this->ads->advanced_Search($data,1,$this->mapp);
+		self::$adSearchQ=$this->ads->get_Search_Query($data);
 		$data['vehicle']=$vehicle;
-		$data['count']=$this->ads->getSearchCount($data);;
+		$data['count']=$this->ads->get_Search_Count($data);;
 		$data['sort']='date';
-		$data['pages']=$this->ads->getSearchCount($data)/$this->mapp;
+		$data['pages']=$this->ads->get_Search_Count($data)/$this->mapp;
 		$data['type']='adSearch';
 		$data['query']=self::$adSearchQ;
 		$this->load->view("header");
-		$this->showCategory();
+		$this->show_Category();
 		$this->load->model('category_model');
-		$category=$this->category_model->allCategory();
+		$category=$this->category_model->all_Category();
 		$data['category']=$category;
 		$this->load->view("AdvancedSearch_view");
 		$this->load->view("AllAds_view",$data);
@@ -216,7 +233,7 @@ class AllAds extends CI_Controller {
 		*to show advanced search result to user by pags 
 		*validate the user inputs
 	*/
-	function advancedSearchPage( $page ){
+	public function advanced_Search_Page( $page ){
 		
 		$this->load->helper('url');;
 		$this->load->library('session');	
@@ -235,29 +252,28 @@ class AllAds extends CI_Controller {
 			);
 	
 		$this->load->model("AllAds_model",'ads');
-		$vehicle=$this->ads->advancedSearch($data,$page,$this->mapp);
-		self::$adSearchQ=$this->ads->getSearchQuery($data);
+		$vehicle=$this->ads->advanced_Search($data,$page,$this->mapp);
+		self::$adSearchQ=$this->ads->get_Search_Query($data);
 		$data['vehicle']=$vehicle;
-		$data['count']=$this->ads->getSearchCount($data);;
+		$data['count']=$this->ads->get_Search_Count($data);;
 		$data['sort']='date';
-		$data['pages']=$this->ads->getSearchCount($data)/$this->mapp;
+		$data['pages']=$this->ads->get_Search_Count($data)/$this->mapp;
 		$data['type']='adSearch';
 		$data['query']=self::$adSearchQ;
 		$this->load->view("header");
-		$this->showCategory();
+		$this->show_Category();
 		$this->load->model('category_model');
-		$category=$this->category_model->allCategory();
+		$category=$this->category_model->all_Category();
 		$data['category']=$category;
 		$this->load->view("AdvancedSearch_view",$data);
 		$this->load->view("AllAds_view",$data);
 		$this->load->view('AdsPages_view',$data);
 		$this->load->view('footer');
 		
-		
-		
 			
-		
 	}
+	
+
 	
 
 	

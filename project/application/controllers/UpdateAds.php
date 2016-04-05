@@ -1,12 +1,15 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
- 
+<?php 
+if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/**
+ * @author it14119804
+ */
 class UpdateAds extends CI_Controller {
 	
 	
 	
 	function __construct() {
 	parent::__construct();
-	$this->load->model('insert_model');
+	
 	}
 
      
@@ -19,20 +22,20 @@ class UpdateAds extends CI_Controller {
 	/*
 		*load the update advertisment view
 	*/
-	function updateAd($adsid){
+	function update_Ad($adsid){
 			
     	$this->load->helper('url');
 		$this->load->helper('form');
 		//load the model
 		$this->load->model("EditAds_model");
 		//get the Adversiment data
-		$adsdata=$this->EditAds_model->getAdsInfo($adsid);
+		$adsdata=$this->EditAds_model->get_Ads_Info($adsid);
 		$ads['adsdata']=$adsdata;
     	$this->load->helper('url');
 		$this->load->helper('form');
 		//load the view
 		$this->load->view('header');
-		$this->load->view('updateAds_view',$ads);
+		$this->load->view('UpdateAds_view',$ads);
 		$this->load->view('footer');
 		
 	}
@@ -40,16 +43,16 @@ class UpdateAds extends CI_Controller {
 		*delete an advertisement by id given
 		**@param int$ id -use to get advertisment id to ta function
 	*/
-	function deleteAds($id){
+	function delete_Ads($id){
 		
 		//delete the data from database
 		$this->load->model("EditAds_model");
-		$check=$this->EditAds_model->deleteAds($id);
+		$check=$this->EditAds_model->delete_Ads($id);
 		
 		//delete the image of the ads from server
 		if($check==true){
 		$this->load->model('files_model');
-		$this->files_model->deleteFile($id.'pic');
+		$this->files_model->delete_File($id.'pic');
 		}
 		redirect('/AllAds/view_myads/1', 'refresh');
 		
@@ -108,13 +111,13 @@ class UpdateAds extends CI_Controller {
 		
 		//load the model 
 		$this->load->model('EditAds_model');
-		$this->EditAds_model->updateAds($adsid,$data);
+		$this->EditAds_model->update_Ads($adsid,$data);
 		
 		//show the message 
 		echo "<script>alert('Updated Successfully....!!!! ');</script>";
 		
 		//Loading Adversiment view
-		redirect('/FullAds/adsinfo/'.$adsid, 'refresh');
+		redirect('/FullAds/ads_info/'.$adsid, 'refresh');
 		
 		
 		
