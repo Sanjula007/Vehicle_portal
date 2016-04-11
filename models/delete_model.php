@@ -1,23 +1,18 @@
 <?php
-class delete_model extends CI_Model{
-
-
- public function did_delete_row($username){
- // $this -> db -> where('fname', $username);
-  //$this -> db -> delete('users');
-  
-  		//$username = $this->input->post('uname');
-
-			$sql ="DELETE from users where fname = '{$username}' " ;
-			$this->db->query($sql);
-			
-			redirect('Home');
-	
-			}
+Class delete_model extends CI_Model
+{ 
+	//QUery to delete an account
+		public function delete($fname){
 				
+				
+			$this->db->where('fname' ,$fname); // where username(uname) equals to fname
+			$this->db->delete('users');//Delete from table users 
+		}
+		
+			public function delete_request($data)
+		{
+			return $this->db->insert('user_acc_del_request', $data);
 			
-  //redirect('Home');
-	
- 
-}
-?> 
+		}
+	}
+?>

@@ -1,65 +1,73 @@
 <?php
 Class User extends CI_Model
 {
-	
-	
-	 function __construct()  
-      {  
-         // Call the Model constructor  
-         parent::__construct();  
-      }   
-	 //QUery to insert login into website  
- 	function login($username, $password)
+	 public  function __construct()  
+     {  
+          parent::__construct(); // Call the Model constructor   
+     }   
+	 //QUery for login
+ 	 public function login($username, $password)
  	{     	//$this->load->library('encrypt');	//$pass=$this->encrypt->encode($password);
-			$this -> db -> select('id, email, password');
+			$this -> db -> select('id, fname, lname, Phone, email, password');//select id,email,password from  table users
    			$this -> db -> from('users');
-  			 $this -> db -> where('fname', $username);
-  			 $this -> db -> where('password', $password);
-  			 $this -> db -> limit(1);
-  				 $query = $this -> db -> get();
-  			 if($query -> num_rows() == 1)
+  			 $this -> db -> where('fname', $username); //where username == fname attribute of table users AND
+  			 $this -> db -> where('password', $password);//where password == password attribute of table users 
+  			   			 $this -> db -> limit(1);
+  				 $query = $this -> db -> get();//run the query
+  				 $row = $query->row();
+  			 if($query -> num_rows() == 1)//if username and password exits then return result
   				 {
-    			 return $query->result();
+  				 	$session_data = array(
+					
+					'id' => $row->id,
+					'fname' => $row->fname,
+					'lname' => $row->lname,
+					'Phone' => $row->Phone,
+					'email' => $row->email,
+					//'type' => 'user',										
+					);
+					
+					$this->set_session($session_data);
+					return 'logged_in';			
+				 			 //return $query->result();
    					}
    			else
-   				{ return false; }	
+   				{ return false; }	//if it doesnot exits then return false
    	}
- 
-  //QUery to insert profile picture in db
-	public function insert_file($filename,$username){
- 		
-		$data = array ( 'picture' => $filename,
-							'username' =>$username);
-	
-			//$this->db->where('fname',$filename);
-			$result =$this->db->insert('profilepictures',$data);
-			return $result;
- 		}
- 
-   //QUery to retrieve profile picture from db
-		public function getalldata($username)
-		{	//$query = $this->db->get('profilepictures');
-			$query = $this->db->get_where('profilepictures',array('username'=> $username));
-			return $query;
-		}
 
-	 //QUery to retrieve profile details from db
-		public function update_retrive($username)
-		{
-			 $query = $this -> db -> get_where('users',array('password'=> $username));
-			 return $query;
-		}
-	//QUery to update details from db
-		public function update_details($firstname,$dd)
-		{
-			$this->db->where('fname' ,$firstname);
-			$this->db->update('users', $dd);
-		}
-	//QUery to delete an account
-		public function delete($uname){
+		
+		 public function set_session($session_data)
+		
+			{
+				$sess_data = array(
 				
-			$this->db->where('fname' ,$uname);
-			$this->db->delete('users');
+				'id' => $session_data['id'],
+				'fname' => $session_data['fname'],
+				'lname' =>$session_data['lname'],
+				'Phone' => $session_data['Phone'],
+				'email' => $session_data['email'],
+				//'type' => $session_data['type'],
+				'logged_in' => 1,
+				'ip_address'=> $_SERVER['REMOTE_ADDR'],
+					
+				);
+				
+				$this->session->set_userdata($sess_data);	
+				$this->user_session($sess_data);	
+				
+			}
+
+ 
+	public function user_session($sess_data)
+	{
+		$this->db->insert('user_session',$sess_data);
+		if($this->db->affected_rows()>0)
+		{
+			return true;
 		}
+		
+		
 	}
+
+}
 ?>
