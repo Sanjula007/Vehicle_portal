@@ -95,7 +95,7 @@ $this->load->library('session');
    <li><a href='#'>My Account</a>
 	<ul style='z-index:5;'>
                <li style='z-index:5;'><a href='<?php echo site_url('login');?>'>log In</a></li>
-               <li style='z-index:5;'><a href="<?php echo site_url('register_view');?>">Create an Account</a></li>
+               <li style='z-index:5;'><a href='#'>Create an Account</a></li>
 			   <li style='z-index:5;'><a href="<?php echo site_url('AllAds/view_myads/1'/*.$this->session->userdata('id')*/); ?>">My Ads</a></li>
     </ul>
    </li>
@@ -125,74 +125,49 @@ $this->load->library('session');
 				<li><a href="">Boats & Water Transport</a></li>
 			</ul>
 		</div>
-	<div class="loimg">	<img src="<?php echo base_url("images/logos_18.png");?>"  width="350px" height="350px" float=left alt=""/></div>
+			
+			
+			<div class="body">
+			
+				<div class="se">
+ 	<form action="<?php echo site_url() . "./search_controller" ;?>" method="POST">
+ 				<?php echo validation_errors(); ?>
+				 <table cellpadding="0.2px">
+					<tr> <td><img src="<?php echo base_url("images/se.png");?>"  width="60px" height="60px" float=left alt=""/></td>
+					<td><input type="text" name="search" id="search" style="width:200px; background-color:#FFFFFF" value=''></td>
+					<td><input type="submit" class="btn btn-primary btn-large btn-block"  name="view" value="Search" ></td></tr>
+					</table>
+ 	</form></div>
+ 	
+ 	
+ 		<div class="tableview">
+				<form action="<?php echo site_url() . "./add_busdetails/selectview" ;?>" method="POST">
+ 				
+<section>
+ 				<?php
+				 foreach ($posts->result() as $row) {
+				 ?>
+				 	<table bgcolor="#E4E4A1" cellspacing="20px" style="border-radius:25px; border: 1px solid black;">
+		 			<tr> <td><img style="width:200px; height:200px;" src="<?php echo base_url('file/'.$row->picture)?>"></td>
+					<td><input type="text" name="cname" id="cname" placeholder="Company Name" style="width:200px; background-color:#E4E4A1;" value='<?php echo $row->name;?>'></td>
+					<td><input type="submit" class="btn btn-primary btn-large btn-block"onclick="view()" name="view" value="View Details" ></td></tr>
+					</table></br>
 
-    <div class="lo">
-        	<div class="login">
-		<div class="login-screen">
-            <div class="panel-heading">
-                <h4>User Registration Form</h4>
-            </div>
-            <div class="panel-body">
-                <?php $attributes = array("name" => "registrationform");
-                echo form_open("user1/register", $attributes);?>
-                  <table>
-                  
-                  <tr>
-                       <td><label for="name">First Name</label></td>
-                   <td> <input class="form-control" name="fname" placeholder="Your UserName" type="text" value="<?php echo set_value('fname'); ?>" />
-                    <span style="color:red;"><b><?php echo form_error('fname'); ?></b></span></td>
-                   </tr>
-                
- 				 	<tr>
-                       <td><label for="name">Last Name</label></td>
-                   		<td> <input class="form-control" name="lname" placeholder="Last Name" type="text" value="<?php echo set_value('lname'); ?>" />
-                   		<span style="color:red;"><b><?php echo form_error('lname'); ?></b></span></td>
-                  		 </tr>
-                    	
-                                    
-               	<tr>
-                   <td> <label for="email">Email ID</label></td>
-                  <td>  <input class="form-control" name="email" placeholder="Email-ID" type="text" value="<?php echo set_value('email'); ?>" />
-                   <span style="color:red;"><b><?php echo form_error('email'); ?></b></span></td>
-                	</tr>
-	
-					<tr>
-                   <td> <label for="phoneno">Phone no</label></td>
-                  <td>  <input class="form-control" name="phone" placeholder="Phone Number" type="text" value="<?php echo set_value('phone'); ?>" />
-                   <span style="color:red;"><b><?php echo form_error('phone'); ?></b></span></td>
-                	</tr>
-
-
-				<tr>
-                    <td><label for="subject">Password</label></td>
-                   <td><input class="form-control" name="password" placeholder="Password" type="password" />
-                   <span style="color:red;"><b><?php echo form_error('password'); ?></b></span></td>
-                   </tr>
-                   <tr>
-                   	<td> <label for="subject">Confirm Password</label></td>
-                   
-                    <td><input class="form-control" name="cpassword" placeholder="Confirm Password" type="password" />
-                  <span style="color:red;"><b><?php echo form_error('cpassword'); ?></b></span></td>
-                </tr>
 				
-				<tr></tr><tr></tr><tr></tr>
-					
-                <tr>
-                  <td> <button name="submit" type="submit" class="btn btn-default">Signup</button></td>
-                  <td>  <button name="cancel" type="reset" class="btn btn-default">Cancel</button></td>
-              	</tr>
-              	
-              	</table>
-              
-                <?php echo form_close(); ?>
-                <?php echo $this->session->flashdata('msg'); ?>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-</div>
+				<?php
+				 }
+				 ?>
+				 
+			</section>	
+				 
+	 
+		 
+				
+		</form></div>
+
+			
+			
+		</div>
 <div class="footer" style='width:99%; background-color:#8585ad; box-shadow: 2px 2px 5px;'>
 				<ul>
 					<li><a href="<?php echo site_url('Home'); ?>">Home</a></li>

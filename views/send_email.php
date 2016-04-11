@@ -16,7 +16,8 @@
 
 
 <body>
-	<form action ="send_email" method ="POST">
+	 <?php echo validation_errors(); ?>
+	<form action ="<?php echo site_url() . "./sendemail" ;?>" method ="POST">
 		 
 
 			<div class="email"><img src="<?php echo base_url("images/email.png");?>"  width="300px" height="300px" float=left alt=""/></div>
@@ -24,14 +25,20 @@
 <div class="up">
 <table>
  <tr><td><label > To :</label></td>
-		<td><input type="text" name="to" style="width:200px; background-color:#FFFFFF">&nbsp;</td></tr>
+		<td><input type="text" name="to" id="to" style="width:200px; background-color:#FFFFFF">&nbsp;</td></tr>
  
  <tr>
  	<td> <label>From :</label></td>
-<td><input type="text" name="from"  style="width:200px ;background-color:#FFFFFF">&nbsp;</br>
+<td><input type="text" name="from"  name="from" style="width:200px ;background-color:#FFFFFF">&nbsp;</br>
+ <span class="text-danger"><?php echo form_error('from'); ?></span></td>
+
+</td></tr> 
+<tr>
+ 	<td> <label>Subject :</label></td>
+<td><input type="text" name="subj"  id="subj" style="width:200px ;background-color:#FFFFFF">&nbsp;</br>
 </td></tr> 
   <tr> <td><label> Message:</label></td>
- 	<td><input type="text" name="msg" style="width:400px; height:200px; background-color:#FFFFFF"></br>
+ 	<td><input type="text" name="msg" id="msg" style="width:400px; height:200px; background-color:#FFFFFF"></br>
  </tr>
  </table>
 </div>

@@ -2,24 +2,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
  <head>
  	
- 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/style.css" type="text/css" />
- 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/style1.css" type="text/css"/>
+ 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/style5.css" type="text/css" />
+ 
 	
  
   </head>
- <body>
- 		<div class="page">
-			<div class="header">
-				<a href="index.html" id="logo"><img src="<?php echo base_url("images/logo.gif");?>" alt=""/></a>
-				
-				</div> </div>
+ 
+ 	
+		
 	
-
-	
-	<h1>	<input type="text" style="width:300px ;background-color:#FFA500 " value='My Account Details'></h1>
-
 <body>
-	<form action ="check_update" method ="POST">
+	<form action ="<?php echo site_url() . "./edit/check_button" ;?>" method ="POST">
 
        <?php echo $this->session->flashdata('verify_msg'); ?>
 
@@ -37,42 +30,57 @@ foreach ($posts->result() as $post)
 <img src="<?php echo base_url("images/My.png");?>"  width="240px" height="220px" float=&#x2192; alt=""/></div>
 
 <div class="up">
-<table>
- <tr><td><label for="name">First Name :</label></td>
-		<td><input type="text" name="firstname" placeholder="FIRST NAME" style="width:200px; background-color:#FFFFFF" value='<?php echo $post->fname;?>'>&nbsp;</td></tr>
+	<h1>My Account Details</h1>
+<table bgcolor="#B6B3B2" cellspacing="20px" style="border-radius:25px;">
+ 
+<tr><td><label for="name">First Name :</label></td>
+<td><input type="text" class ="textbox1"  name="firstname" placeholder="FIRST NAME" style="width:200px; background-color:#FFFFFF" value='<?php echo $post->fname;?>'>
+ <span style="color:red;"><b><?php echo form_error('firstname'); ?></b></span></td></tr>
  
  <tr>
  	<td> <label for="name">Last Name :</label></td>
-<td><input type="text" name="lastname" placeholder="LAST NAME" style="width:200px ;background-color:#FFFFFF" value='<?php echo $post->lname;?>'>&nbsp;</br>
+<td><input type="text" name="lastname" class ="textbox1"  placeholder="LAST NAME" style="width:200px ;background-color:#FFFFFF" value='<?php echo $post->lname;?>'>&nbsp;</br>
+ <span style="color:red;"><b><?php echo form_error('lastname'); ?></b></span></td></tr>
+
 </td></tr> 
  <tr>
  	<td><label for="name">Email    :</label></td>
-<td><input type="text" name="email" placeholder="ENTER EMAIL" style="width:200px; background-color:#FFFFFF" value='<?php echo $post->email;?>'></br>
- </td></tr>
+<td><input type="text" name="email" class ="textbox1"  placeholder="ENTER EMAIL" style="width:200px; background-color:#FFFFFF" value='<?php echo $post->email;?>'></br>
+ <span style="color:red;"><b><?php echo form_error('email'); ?></b></span></td></tr>
+
  <tr> <td><label for="name">Mobile no :</label></td>
- 	<td><input type="text" name="mobile" placeholder="ENTER NUMBER" style="width:200px; background-color:#FFFFFF" value='<?php echo $post->Phone;?>'></br>
- </tr>
+ 	<td><input type="text" name="mobile" class ="textbox1" placeholder="ENTER NUMBER" style="width:200px; background-color:#FFFFFF" value='<?php echo $post->Phone;?>'></br>
+ 			                    <span style="color:red;"><b><?php echo form_error('mobile'); ?></b></span></td></tr>
+ <tr><td><input type="submit"  class="btn btn-primary btn-large btn-block" name="Send_email" value="Send Email " ></td></tr><tr></tr><tr></tr>
  </table>
+ 
+</div>
+<div class ="deleteacc">
+<table bgcolor="#B6B3B2" cellspacing="20px" style="border-radius:25px;">
+				 		<tr> <td><label><b>Delete Account </b></label></td></tr>
+					 	<tr> <td><label><b><i>Reason to Delete your account:</i></b></label></td></tr>
+  						<tr><td><textarea rows="5" cols="50" name="purpose" ></textarea></td></tr>
+  						<tr> <td><input type="submit" class="btn btn-primary btn-large btn-block"  name="DELETE" value="DELETE" ></td></tr>
+
+				 	</table>
 </div>
 
-<div class="pic1">
-<input type="submit" class="btn btn-primary btn-large btn-block"  name="UPLOAD" value="Upload profile picture" >
-<input type="submit" class="btn btn-primary btn-large btn-block"  name="Preview" value="Preview" ></div>
+
+
+
 <div class="upb">
-<input type="submit" class="btn btn-primary btn-large btn-block"  name="UPDATE" value="UPDATE" >
-<input type="submit" class="btn btn-primary btn-large btn-block"  name="DELETE" value="DELETE" ></div>
-<div class="upb1">
+<table bgcolor="#B6B3B2" cellspacing="20px" style="border-radius:25px;">	
+<tr><td><input type="submit" class="btn btn-primary btn-large btn-block"   name="UPDATE" value="UPDATE" ></tr></td>
 
-<input type="submit"  style="width:420px; background-color:orange" name="Send_email" value="Send Email to Seller for Verification" >
+<tr><td><input type="submit" class="btn btn-primary btn-large btn-block"  name="Business" value="Add Business Details" ></td></tr>
+<tr><td><input type="submit" class="btn btn-primary btn-large btn-block"  name="UPLOAD" value="Upload profile picture" ></div></td></tr>
+<tr><td><input type="submit" class="btn btn-primary btn-large btn-block"  name="Business" value="Post An Ad" ></td></tr>
 
-</div>
+
+
 
 <?php }
 ?>
-
-				
-				
-				
 
 </form>
 

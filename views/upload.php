@@ -15,7 +15,7 @@
 				</div> </div>
 		<div class="home"><img src="<?php echo base_url("images/house.png");?>"  width="30px" height="30px" float=left alt=""/><a href="<?php echo base_url() ?>index.php/login/Homeview1">HOME</a></div>
 <body>
-	<form action ="upload_file" method ="POST" enctype="multipart/form-data">
+	<form action ="<?php echo site_url() . "./edit/upload_file" ;?>" method ="POST" enctype="multipart/form-data">
 <div class="prof">	<img src="<?php echo base_url("images/profile.jpg");?>"  width="350px" height="350px" float=left alt=""/></div>
 <div class="pic">
 <table>

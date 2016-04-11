@@ -29,8 +29,8 @@
 			<div class="panel">
 				<a href="" id="logo"><img src="<?php echo base_url("images/user.png");?>"  width="100px" height="100px" float=left alt=""/></a>
 				</br>
-				<h3><a href="<?php echo base_url() ?>index.php/login/userview">PROFILE</a></h3>
-				<h3><a href="<?php echo base_url() ?>index.php/login/logout">logout</a></h3>
+								
+				
 			</div>
 
 		<div class="category">

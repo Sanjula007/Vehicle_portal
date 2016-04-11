@@ -13,14 +13,14 @@
  	
  
 
-<form action ="check_username" method ="POST">
+<form action ="<?php echo site_url() . "./edit/check_username" ;?>" method ="POST">
 			<div class="resetO">	<img src="<?php echo base_url("images/Orange.png");?>"  width="400px" height="400px" float=left alt=""/></div>
 
 <div class="tt">
 	<table>
 		<tr><td><label form ="email"> <b>Type your password to View and Update your Account details:</b></label></td></tr>
 	
-	<tr><td><input type = "password"  class ="login-field" placeholder="YOUR USERNAME"  style="width:450px; background-color:#FFFFFF" value="<?php echo set_value('password');?>" name ="password" id="login-name"/></td></tr>
+	<tr><td><input type = "password"  class ="login-field" placeholder="User Password"  style="width:450px; background-color:#FFFFFF" value="<?php echo set_value('password');?>" name ="password" id="login-name"/></td></tr>
 
 	<tr><td><input type ="submit" class="btn btn-primary btn-large btn-block" name="submit" value="Submit"/></td></tr>
 	</table></div>

@@ -17,9 +17,10 @@
 <h2>Update Your password</h2>
   </div>
             <div class="panel-body">
-<form action="update_password" method="post">
+<form action="<?php echo site_url() . "./updatepassword/update_password" ;?>"  method="post">
 	<div class="form-group">
-	<input type ="hidden" value= "<?php echo (isset($email)) ?  $email : ""; ?>" name="email" />
+	<label> Email-ID</label>
+	<input type ="text" value= "" name="email" />
 	</div>
 </br>
 	

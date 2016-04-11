@@ -5,26 +5,31 @@
  	<link rel="stylesheet" href="<?php echo base_url(); ?>css/style.css" type="text/css" />
  	<link rel="stylesheet" href="<?php echo base_url(); ?>css/style1.css" type="text/css"/>
 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/style4.css" type="text/css"/>
- 
+	
   </head>
  <body>
  		<div class="page">
 			<div class="header">
 				<a href="index.html" id="logo"><img src="<?php echo base_url("images/logo.gif");?>" alt=""/></a>
+								</div> </div>
 				
-				</div> </div>
-		<div class="home"><img src="<?php echo base_url("images/house.png");?>"  width="30px" height="30px" float=left alt=""/><a href="<?php echo base_url() ?>index.php/login/Homeview1">HOME</a></div>
 				
-				<?php
-				 foreach ($posts->result() as $row) {
-				 ?>
-					 <img style="width:400px; height:400px;" src="<?php echo base_url('file/'.$row->picture)?>">
-				<?php
-				 }
-				 ?>
 				
+				
+	<div class ="tab3">		
+		
+	
+	 <?php foreach ($posts->result() as $row): ?>
+						 	<table bgcolor="#E4E4A1" cellspacing="20px" style="border-radius:25px;border: 3px solid black; width:900px;">
+ 	
+    <tr><td style="color:blue;"><b><?php echo $row->username;?></b></br></td></tr>
+    <tr><td><?php echo $row->comment;?></br></td></tr>
+    </table></br>
 
-		</form>
+<?php endforeach; ?>
+
+				 
+				</div> 
 
 </body>
 </html>
