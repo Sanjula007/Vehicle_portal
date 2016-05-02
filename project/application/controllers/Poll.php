@@ -23,12 +23,13 @@ class Poll extends CI_Controller {
 		*show the add topic View
 	*/
 	public function add_topic(){
+		$this->checkuser->is_Admin_login();
 		$this->load->helper('url');
 		$this->load->library('session');
 		$this->load->view("header");
 		$this->load->helper('form');
 		$this->show_Category();
-		$this->load->view("Poll_Views/poll_add_topic_View");
+		$this->load->view("Poll_Views/Poll_add_topic_view");
 		$this->load->view('footer');
 		
 	}
@@ -38,6 +39,7 @@ class Poll extends CI_Controller {
 		*call to add_choices if data valid
 	*/
 	public function validate_topic(){
+		$this->checkuser->is_Admin_login();
 		$this->load->helper('url');;	
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('topic', 'topic', 'required|min_length[2]|max_length[50]|alpha_numeric_spaces');
@@ -82,6 +84,8 @@ class Poll extends CI_Controller {
 		
 	*/
 	public function add_choices($tid,$choices,$des,$topic){
+		//check admin loged in
+		$this->checkuser->is_Admin_login();
 		
 		$this->load->helper('url');
 		$this->load->library('session');
@@ -94,7 +98,7 @@ class Poll extends CI_Controller {
 		$this->load->view('header');
 		//load the Category
 		$this->show_Category();
-		$this->load->view("Poll_Views/poll_add_choices_View",$data);
+		$this->load->view("Poll_Views/Poll_add_choices_view",$data);
 		$this->load->view('footer');
 		
 		
@@ -109,6 +113,8 @@ class Poll extends CI_Controller {
 		
 	*/
 	public function validate_choices($tid,$choices){
+		//check admin loged in
+		$this->checkuser->is_Admin_login();
 		
 		$this->load->helper('url');;	
 		$this->load->library('form_validation');
@@ -160,7 +166,7 @@ class Poll extends CI_Controller {
 		$this->load->view('header');
 		//load the Category
 		$this->show_Category();
-		$this->load->view("Poll_Views/poll_All_view",$data);
+		$this->load->view("Poll_Views/Poll_All_view",$data);
 		$this->load->view('footer');
 		
 		
@@ -178,7 +184,7 @@ class Poll extends CI_Controller {
 		$this->load->view('header');
 		//load the Category
 		$this->show_Category();
-		$this->load->view("Poll_Views/poll_vote_view",$data);
+		$this->load->view("Poll_Views/Poll_vote_view",$data);
 		$this->load->view('footer');
 		
 	}
@@ -231,7 +237,7 @@ class Poll extends CI_Controller {
 		$this->load->view('header');
 		//load the Category
 		$this->show_Category();
-		$this->load->view('Poll_Views/poll_result_view',$data);
+		$this->load->view('Poll_Views/Poll_result_view',$data);
 		$this->load->view('footer');
 	}
 	/*
@@ -248,7 +254,16 @@ class Poll extends CI_Controller {
 		
 		
 	} 
+	
+	/*
+		*use to delete the poll by poll id given
+		*poll ,poll choices and results are deleted by this function
+		*@param interger $tid -poll id
+	*/
 	public function delete_poll($tid){
+		//check admin loged in
+		$this->checkuser->is_Admin_login();
+		
 		
 		$this->load->model('poll_model');
 		if($this->poll_model->delete_poll($tid)){
@@ -267,8 +282,14 @@ class Poll extends CI_Controller {
 		$this->load->view("Poll_Views/Poll_Delete_view",$data);
 		$this->load->view('footer');
 	}
-	
+	/*
+		*to view all polls in web
+		*to delete the poll 
+	*/
 	public  function Manage_polls(){
+		//check admin loged in
+		$this->checkuser->is_Admin_login();
+		
 		$this->load->model('poll_model');
 		$data['poll']=$this->poll_model->get_all_topics();
 		//load the views

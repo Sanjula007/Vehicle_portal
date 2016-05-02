@@ -22,6 +22,7 @@ class SendEmail extends CI_Controller {
 		$data['message']='<div style=\"width=100%;\"><h3><center>Send Emails to Users<center></h3><div>';
 		$this->load->helper('url');;	
 		$this->load->view('header');
+		$this->load->view('adminsidepanel_view');
 		$this->load->view('SendEmailToUser_View',$data);
 		
 	}

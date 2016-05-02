@@ -25,15 +25,20 @@ class FullAds extends CI_Controller {
 		$data1['pages']=$this->Ads->set_pagecount($this->mapp);
 		$this->load->view('AdsPages_view',$data1);
 	}
+	
 	/*
 		*adsinfo function for show All information of the advetisments
 		**@param int $data use to send advetisment id
 	*/
 	public function ads_info( $data ){
+		$this->load->helper('text');
+		$this->load->helper('string');
+		$this->load->model('Insert_model');
 		$this->load->library('form_validation');	
 		$this->load->helper('url');
 		//load the header view
 		$this->load->view('header');
+		//
 		//load the Category
 		$this->show_Category();
 		// get data from database
@@ -43,6 +48,9 @@ class FullAds extends CI_Controller {
 		$this->set_No_Of_Views($data);
 		//send data to view and view it
 		$data1['vehicle']=$car;
+		$ad_comments=$this->FullAds_model->ad_comments($data);
+		$data1['comments']=$ad_comments;
+		$this->load->view('Bookmark_btn');
 		$this->load->view('FullAds_view',$data1);
 		$this->load->view('footer');
 	}
@@ -60,6 +68,8 @@ class FullAds extends CI_Controller {
 		
 		
 	}
+	
+	
 	/*
 		*setNoOfViews function to set no Of Views from one when ad is loaded 
 		*@param int $adsid -use to send advertisment id to function
@@ -72,7 +82,11 @@ class FullAds extends CI_Controller {
 			
 	}
 	
-	
+	/*
+		*user can report ads usering this function validate the user input insert input to reportad table
+		
+		*@param int $adsid -use to send advertisment id to function
+	*/
 	public function report_ad($data){
 		$this->load->library('form_validation');
 
@@ -139,6 +153,14 @@ class FullAds extends CI_Controller {
 		
 	}
 	
+	
+	/*
+		*user can can contact the advertisment owner by email 
+		*user can give his email,name,meassage and phone. input will vaildated
+		*send email to the advertisment owner 
+		
+		*@param int $data -use to send advertisment id to function
+	*/
 	public function contect_adowner_email( $data ){
 		$this->load->library('form_validation');
 		$this->load->helper('url');
@@ -167,13 +189,13 @@ class FullAds extends CI_Controller {
 		
 		}
 		else{
-			$sendemail="Dear User,<br><br>".
-						$this->input->post('name')." like to contect you about your advertisment.<br>".
-						site_url('FullAds/ads_info/'. $data)."<br>".
-						"Name -".$this->input->post('name')."<br>".
-						"phone -".$this->input->post('phone')."<br>".
-						"Email -".$this->input->post('email')."<br>".
-						"message -".$this->input->post('message')."<br><br>".
+			$sendemail="Dear User,\n\n".
+						$this->input->post('name')." like to contect you about your advertisment.\n".
+						site_url('FullAds/ads_info/'. $data)."\n".
+						"Name -".$this->input->post('name')."\n".
+						"phone -".$this->input->post('phone')."\n".
+						"Email -".$this->input->post('email')."\n".
+						"message -".$this->input->post('emessage')."\n\n".
 						'Thank you';
 			$to_email=$this->input->post('toemail');
 			$this->load->model("Newsletter_model");
@@ -183,5 +205,82 @@ class FullAds extends CI_Controller {
 		}
 		
 	}
+	
+	
+	// this function is to get the current url and save to db according to user favorites
+	//parameter data holds the current ad url.
+	
+	public function bookmarking($data)
+	{ 
+		$this->load->helper('text');
+		$this->load->database();
+		$this->load->model('Insert_model');
+
+		//user given name to identify the bookmark
+		$strBookmark = $this->input->post('bkmark'); 
+		//adding date of the bookmark
+		$addedDate = date("Y-m-d H:i:s"); 
+		//parameter details are passed to $url variable
+		$url = $data; 
+		// logged in user id
+		$id = 4; 
+		
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+		$this->form_validation->set_rules('bkmark', 'Bookmark Name', 'required|callback_validate_string');
+		
+		if ($this->form_validation->run() == FALSE) 
+		{
+			echo "<script>alert('You Have To Provide a Valid Name For Bookmark ');</script>";
+			$this->ads_info($data);
+		} // end of if statement
+		
+		else
+		{
+			//passing bookmark details to data1 array
+			$data1 = array(
+			'bookmarkName' => $strBookmark,
+			'bookmark' => $url,
+			'userID' => $id,
+			'dateAdded' => $addedDate
+			);
+			
+			
+			//calling model function to insert details
+			$this->Insert_model->insert_bookmark($data1); 
+			echo "<script>alert('Your Bookmark Successfully Added....!!!! ');</script>";
+			//$this->redirect_to_all_bkmrk();
+			redirect('View_bookmark/index');
+			//$data['message'] = "success";
+			//redirecting
+			//$this->ads_info($data);
+			 
+			
+			
+		} //end of else
+	} //end of bookmarking function
+	
+		public function redirect_to_all_bkmrk()
+		{
+			//$this->load->library('../controllers/View_bookmark');
+			$this->load->controller('View_bookmark');
+				//$this->View_bookmark->index();
+		}
+
+	//function to check whether the user entered something or not
+		public function validate_string($strBookmark)
+		{
+			// 'none' is the first option that is default "brand*"
+			if(strlen(trim($strBookmark))==0 && $strBookmark === " ")
+			{
+				return FALSE;
+				$this->form_validation->set_message('validateString', 'You Have To Provide a Valid Name For Bookmark');
+			} 
+			else
+			{
+				//$this->form_validation->set_message('bkmark', 'You Have To Provide a Valid Name For Bookmark');
+				return TRUE;
+			}
+		}
 
 }

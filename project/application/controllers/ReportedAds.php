@@ -14,17 +14,10 @@ class ReportedAds extends CI_Controller {
 	}
 	
 	public function index(){
-		$this->load->library('form_validation');	
-		$this->load->helper('url');
-		$this->load->view('header');
-		$this->show_Category();
-		$this->load->model("Ads");
-		$car=$this->Ads->allAds();
-		$data['carss']=$car;
-		$this->load->view("body",$data);
-		$data1['pages']=$this->Ads->set_pagecount($this->mapp);
-		$this->load->view('AdsPages_view',$data1);
+		$this->ads_info( 1 ) ;
 	}
+	
+	
 	/*
 		*show all unviewed Reported Advertisments
 		**@param int $page to get the page id
@@ -46,6 +39,8 @@ class ReportedAds extends CI_Controller {
 		$this->load->view('ReportAds_Views/ReportAds_view',$data1);
 		$this->load->view('footer');
 	}
+	
+	
 	/*
 		*use to view all category ina view 
 	*/
@@ -60,6 +55,8 @@ class ReportedAds extends CI_Controller {
 		
 		
 	}
+	
+	
 	/*
 		*delete an advertisement by id given
 		**@param int$ id -use to get advertisment id to ta function
@@ -101,8 +98,9 @@ class ReportedAds extends CI_Controller {
 		$car=$this->ReportAds_model->report_ads_info($adid);
 		$data1['vehicle']=$car;
 		$data1['reportads']=$this->ReportAds_model->ads_reports($adid);
-		//send data to view and view it
+
 		
+		//send data to view and view it
 		$this->load->view('ReportAds_Views/FullReportAds_view',$data1);
 		$this->load->view('footer');
 		
@@ -130,6 +128,38 @@ class ReportedAds extends CI_Controller {
 		}
 		
 		
+	}
+	
+	/*
+		*show all unviewed Reported Advertisments by user
+		**@param int $page to get the page id
+	*/
+	public function user_report_ads( $page ,$userid ){
+		$this->load->library('form_validation');	
+		$this->load->helper('url');
+		//load the header view
+		$this->load->view('header');
+		//load the Category
+		$this->show_Category();
+		// get data from database
+		$this->load->model("ReportAds_model");
+		$car=$this->ReportAds_model->get_user_report_ads( $page, $this->mapp, $userid );
+		$count=$this->ReportAds_model->ads_count();
+		$data1['pages']=$this->ReportAds_model->set_pagecount($count,$this->mapp);
+		//send data to view and view it
+		$data1['vehicle']=$car;
+		$this->load->view('ReportAds_Views/ReportAds_view',$data1);
+		$this->load->view('footer');
+	}
+	
+	public function set_selected_Viewed_user(){
+		
+			$this->load->helper('url');
+			$data=$this->input->post('checkAds');
+			$this->load->model("ReportAds_model");
+			$this->ReportAds_model->user_Viewed_report_ads($data);
+			redirect('/user_report_ads/1/1', 'refresh');
+	
 	}
 	
 }

@@ -21,6 +21,7 @@ class UpdateAds extends CI_Controller {
 	}
 	/*
 		*load the update advertisment view
+		@param integer $adid - advertisement id
 	*/
 	function update_Ad($adsid){
 			
@@ -35,13 +36,14 @@ class UpdateAds extends CI_Controller {
 		$this->load->helper('form');
 		//load the view
 		$this->load->view('header');
+		$this->load->view('usersidepanel_view');
 		$this->load->view('UpdateAds_view',$ads);
 		$this->load->view('footer');
 		
 	}
 	/*
 		*delete an advertisement by id given
-		**@param int$ id -use to get advertisment id to ta function
+		*@param int$ id -use to get advertisment id to ta function
 	*/
 	function delete_Ads($id){
 		
