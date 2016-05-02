@@ -42,7 +42,7 @@ function hideshow(which){
 	font-family: 'RokkittRegular';
 	font-size:15px;
 	font-weight:bold;
-	color:#636363;
+	color:#0099CC;
 	margin:15px 0 0;
 	line-height:21px;
 	//padding-left:40%
@@ -54,8 +54,8 @@ function hideshow(which){
 </style>
 
 
-<div align="center" class="body" style=" background-color: #efeff5; width:76%; min-height:100%; box-shadow:2px 2px 5px grey; padding:0px">
-    <h3 id="form_head" style='color:#004444; font-size:30px; background: linear-gradient(to right, #5cd65c , #adebad); '><center>All Reported Advertismetns</center></h3><br/>
+<div align="center" class="body" style=" background-color: #efeff5; width:80%; min-height:100%; box-shadow:2px 2px 5px grey; padding:0px">
+    <h3 id="form_head" style='color:#FFFFFF; font-size:30px; background: linear-gradient(to right, #0099CC , #336699); '><center>All Reported Advertismetns</center></h3><br/>
 		<?php
 			if(count($vehicle)==0){
 				echo "<h3> No Reporrted Advertismetns to Show </h3>";
@@ -77,8 +77,8 @@ function hideshow(which){
 					<table> 
 					<tr >
 						<th></th>
-						<th><label class="title" style="color:#3CBC8D;">Vehicle</label></th>
-						<th><label class="title" style="color:#3CBC8D;">Information</label><br></th>
+						<th><label class="title" style="color:#FFFFFF;">Vehicle</label></th>
+						<th><label class="title" style="color:#FFFFFF;">Information</label><br></th>
 						<th></th>
 					</tr><tr>
 						<td><label class="title">Category</label></td>
@@ -120,8 +120,8 @@ function hideshow(which){
 				</td><td>
 					<table  >
 					<tr><th></th>
-						<th><label class="title" style="color:#3CBC8D;">Owner</label></td>
-						<th><label class="title" style="color:#3CBC8D;">Information</label><br></td>
+						<th><label class="title" style="color:#FFFFFF;">Owner</label></td>
+						<th><label class="title" style="color:#FFFFFF;">Information</label><br></td>
 						<th></th>
 					</tr>
 					<tr>	
@@ -187,7 +187,7 @@ function hideshow(which){
 		}
 		for($i=0;$i<$pages;$i++)
 		{
-			echo  '<a href='.site_url().'/ReportedAds/ads_info/'.($i+1).' >'.($i+1)."</a>,";
+			echo  '<a class="gopage" href='.site_url().'/ReportedAds/ads_info/'.($i+1).' >'.($i+1)."</a>";
 		}
 		if(0<$pages){
 			echo '>';
@@ -212,7 +212,7 @@ th, td {
 tr:nth-child(even){background-color: #f2f2f2}
 
 th {
-    background-color: lightblue;
+    background-color: #0099CC;
     color: white;
 }
 </style>

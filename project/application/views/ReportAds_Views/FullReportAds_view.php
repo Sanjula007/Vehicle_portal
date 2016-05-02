@@ -14,22 +14,16 @@ function hideshow(which){
 }
 </script>
 <?php
-	if(isset($report)){
+	$type='user';
+	if($type=='admin'){
 		
-		$report='block';
+		$display='block';
 	}
 	else{
-		$report='none';
+		$display='none';
 		
 	}
-	if(isset($sendmail)){
-		
-		$sendmail='block';
-	}
-	else{
-		$sendmail='none';
-		
-	}
+	
 	
 ?>
 
@@ -42,7 +36,7 @@ function hideshow(which){
 	font-family: 'RokkittRegular';
 	font-size:15px;
 	font-weight:bold;
-	color:#636363;
+	color:#0099CC;
 	margin:15px 0 0;
 	line-height:21px;
 	//padding-left:40%
@@ -62,14 +56,14 @@ th, td {
 tr:nth-child(even){background-color: #f2f2f2}
 
 th {
-    background-color: lightblue;
+    background-color: #0099CC;
     color: white;
 }
 
 </style>
 
 
-<div align="center" class="body" style=" background-color: #efeff5; width:76%;  box-shadow:2px 2px 5px grey;">
+<div align="center" class="body" style=" background-color: #efeff5;  box-shadow:2px 2px 5px grey;">
     
 		<?php
 			if(count($vehicle)==0){
@@ -95,8 +89,8 @@ th {
 					<table> 
 					<tr >
 						<th></th>
-						<th><label class="title" style="color:#3CBC8D;">Vehicle</label></th>
-						<th><label class="title" style="color:#3CBC8D;">Information</label><br></th>
+						<th><label class="title" style="color:#FFFFFF;">Vehicle</label></th>
+						<th><label class="title" style="color:#FFFFFF;">Information</label><br></th>
 						<th></th>
 					</tr><tr>
 						<td><label class="title">Category</label></td>
@@ -138,8 +132,8 @@ th {
 				</td><td>
 					<table  >
 					<tr><th></th>
-						<th><label class="title" style="color:#3CBC8D;">Owner</label></td>
-						<th><label class="title" style="color:#3CBC8D;">Information</label><br></td>
+						<th><label class="title" style="color:#FFFFFF;">Owner</label></td>
+						<th><label class="title" style="color:#FFFFFF;">Information</label><br></td>
 						<th></th>
 					</tr>
 					<tr>	
@@ -200,7 +194,7 @@ th {
 				
        
 		</div>
-			<div align="center" id="sendemails"  style=" background-color: #efeff5;  min-height:10%; float:center; box-shadow:2px 2px 5px grey; ">
+			<div align="center" id="sendemails"  style="display:<?php echo $display; ?>; background-color: #efeff5;  min-height:10%; float:center; box-shadow:2px 2px 5px grey; ">
 			
 			
 		<form action ="<?php echo site_url().'/ReportedAds/send_email/'.$id;?>" class="form_input" method="post" name='reportform' id='reportform' class="form_input">

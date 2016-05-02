@@ -16,8 +16,8 @@ function check(){
 
 </script>
 
-<div class="body" style="width:75%; background-color: #efeff5; min-height:60%; padding:0px">
-<h3 id="form_head" style='color:#004444; font-size:30px; background: linear-gradient(to right, #5cd65c , #adebad); float:center'><center>Polls</center></h3><br><br><br>
+<div class="body" style="width:79%; background-color: #efeff5; min-height:60%; padding:0px">
+<h3 id="form_head" style='color:#FFFFFF; font-size:30px; background: linear-gradient(to right, #0099CC , #336699); float:center'><center>Polls</center></h3><br><br><br>
 	
 	<br/><br/>
 	<?php

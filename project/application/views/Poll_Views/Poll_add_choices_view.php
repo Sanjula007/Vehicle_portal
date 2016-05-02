@@ -1,5 +1,5 @@
-<div class="body" style="width:75%; background-color: #efeff5; min-height:60%">
-	<h3 id="form_head" style='font-size:30px'><center>Add Poll Choices</center></h3><br><br><br>
+<div class="body" style="width:79%; background-color: #efeff5; min-height:60%; padding:0px">
+	<h3 id="form_head" style='color:#FFFFFF;  font-size:30px; background: linear-gradient(to right, #0099CC , #336699);'><center>Add Poll Choices</center></h3><br><br><br>
 	<table class='center'>
 	<tr>
 		<td class='center'>Topic</td>
@@ -61,12 +61,12 @@ td{
    // margin: auto;
     width:300px;
 	height:50px;
-    border: 3px #f78117;
+    border: 3px #0067a7;
     padding:0px;
 	font-family: 'RokkittRegular';
 	font-size:15px;
 	font-weight:bold;
-	color:#f78117;
+	color:#0067a7;
 	//margin:15px 0 0;
 	//line-height:15px;
 }
@@ -77,12 +77,12 @@ td{
 	border-radius: 5px;
    // margin: auto;
     //width: 30%;
-    //border: 3px solid #f78117;
+    //border: 3px solid #0067a7;
     padding: 0px;
 	font-family: 'RokkittRegular';
 	font-size:21px;
 	font-weight:bold;
-	color:#f78117;
+	color:#0067a7;
 	//margin:15px 0 0;
 	//line-height:21px;
 }
