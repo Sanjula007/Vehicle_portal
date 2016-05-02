@@ -52,7 +52,7 @@
 				<p>
                 	
                 	<span class="value">
-					<a href="<?php echo site_url('FullAds/adsinfo1/'. $vehicle[$i]->adID); ?>">More>></a>
+					<a href="<?php echo site_url('Full_ads/ads_info1/'. $vehicle[$i]->adID); ?>">More>></a>
 					</span>
                 </p>
                 

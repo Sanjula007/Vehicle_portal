@@ -9,7 +9,7 @@
 					website simply allows its users to post ads of their vehicle. If any one wishes to buy a vehicle,
 					visit the website and choose it and directly contact the seller of the vehicle.
 					</p>
-					<input type="button" value="Get Start" onClick="parent.location='<?php echo site_url('addNewAD'); ?>'"/>
+					<input type="button" value="Get Start" onClick="parent.location='<?php echo site_url('Add_new_ad/'); ?>'"/>
 				</div>
 				
 			</div>

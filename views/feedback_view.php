@@ -36,7 +36,7 @@
                 <span style="padding-left: 20px">Email :	</span><?php echo $cusFeedbacks[$i]->cEmail; ?> 
                 <span class="" style="text-decoration: underline;font-style: italic; padding-left: 20px">Posted on :	<?php echo $cusFeedbacks[$i]->cDate; ?></span> </p>
                 
-                <form action="<?php echo site_url('editInfo/deleteFeedback/'.($cusFeedbacks[$i]->fID)) ?>" style="text-align: right" method="post" onsubmit="return(confirmDelete());">
+                <form action="<?php echo site_url('Feedback/delete_feedback/'.($cusFeedbacks[$i]->fID)) ?>" style="text-align: right" method="post" onsubmit="return(confirmDelete());">
                 	<input type="submit" align="right" class="btn-class" value="Delete"/>
                 </form>
               </div>

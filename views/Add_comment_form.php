@@ -1,67 +1,18 @@
 <div class="body">
-				<div id="featured">
-					
-					<div style="height:448px;float: right;top: -20px">
-			<!--Javascript function for image slide-->
-			<script type="text/javascript">
-							var image1 = new Image()
-							image1.src = "<?php echo base_url(); ?>images2/1.jpg"
-							var image2 = new Image()
-							image2.src = "<?php echo base_url(); ?>images2/2.jpg"
-							var image3 = new Image()
-							image3.src = "<?php echo base_url(); ?>images2/3.jpg"
-							var image4 = new Image()
-							image4.src = "<?php echo base_url(); ?>images2/4.jpg"
-							var image5 = new Image()
-							image5.src = "<?php echo base_url(); ?>images2/5.jpg"
-							var image6 = new Image()
-							image6.src = "<?php echo base_url(); ?>images2/6.jpg"
-							</script>
-							<img src="<?php echo base_url(); ?>images2/1.jpg" width="445" height="300" name="slide" 	style="opacity:1;padding-top: 40px" />
-							<script type="text/javascript">
-							var step=1;
-							function slideit()
-							{
-							document.images.slide.src = eval("image"+step+".src");
-							if(step<6)
-							step++;
-							else
-							step=1;
-							setTimeout("slideit()",2000);
-							}
-							slideit();
-			</script>
-			<!--end of function slideit-->
-			
-		</div>
-		<h3>Contact Us - A2Z</h3>
-		<p style="padding-left: 5px;">Welcome to our Online Vehicle portal  System,
-			a prolific Automart system<br>
-			 A diverse range of vehicles serving 
-			 24X7 with<br> safety,
-			  promptness and comfort as the primary point of operations<br> 
-			  will enthrall you.
-			   Usage of state of the art technologies in the<br>
-			    operations has established a formidable
-			    reputation throughout the<br> industry. 
-			    Comfort, Safety, Reliability, Discipline,
-			     Guidance and<br> Economy have been the guiding principles of us.</p>
-			     <h5>We Warmly Welcome Customer Feedbacks</h5>
-			     </div>
-			     
-			     <!--form for customer feedbacks-->
-				     <h2 id="form_head2">FeedBack Details</h2>
+	
+	<!--form for add comment-->
+				     <h2 id="form_head2">Add Comment Details</h2>
 					
 					<!--success message after inserting the feedback-->
 					<?php if (isset($message)) { ?>
-						<CENTER><h3 style="color:green;">Feedback Sent Successfully</h3></CENTER><br>
+						<CENTER><h3 style="color:green;">Comment Posted</h3></CENTER><br>
 					<?php } ?>
 			     
 			     <div class="form_input">
 			     	
 			     	<?php
 			     	$hidden = array('cDate' => date("Y-m-d"));
-			     	echo form_open('Contact_us/feedback',$hidden);
+			     	echo form_open('Add_comment/comment/'.$advertisement_id);
 					//echo form_fieldset('Fill the details');
 					?>
 							<center>
@@ -111,7 +62,7 @@
 							
 							<tr>
 							<td>
-							<?php echo form_label('Feedback');
+							<?php echo form_label('Comment');
 							echo form_error('cus_fb');
 							echo "<div class='textarea_input'>";
 							$data_textarea = array(
@@ -137,9 +88,12 @@
 							<?php echo form_close();
 							?>
 							<!--end of form-->
-							
-							
-			     	
-			     </div>
-			     
-			     
+	
+	
+	
+	
+	
+	
+	
+	
+</div>

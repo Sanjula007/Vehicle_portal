@@ -1,4 +1,5 @@
 <!--<div class="body" style=" background: url(<?php echo base_url();?>/images/divInterface.jpg)">-->
+	<body>
 	<div class="body">
 		
 		
@@ -61,7 +62,7 @@
 				<p>
                 	
                 	<span class="value">
-					<a href="<?php echo site_url('FullAds/adsinfo1/'. $vehicle[$i]->adID); ?>">More>></a>
+					<a href="<?php echo site_url('Full_ads/ads_info1/'. $vehicle[$i]->adID); ?>">More>></a>
 					</span>
                 </p>
                 
@@ -72,3 +73,4 @@
     <?php } ?>
 </div>
 </div>
+</body>

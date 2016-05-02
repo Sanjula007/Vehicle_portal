@@ -1,5 +1,4 @@
 <center>
-	
 	<!--javascript confirm box for confirming deleting the bookmark-->
 	<script type="text/javascript">
 	function confirmDelete()
@@ -33,10 +32,11 @@
                 </div>
                 <!--<h4><?php echo str_replace("-", "/", $bookmarks[$i]->bookmark); ?></h4>-->
               <div class="content2">
-              	<p style="font-weight: bolder"><a href="<?php echo str_replace("-", "/", $bookmarks[$i]->bookmark); ?>"><?php echo str_replace("-", "/", $bookmarks[$i]->bookmark); ?><br /></a></p>
+              	<p style="font-weight: bolder"><a href="<?php echo str_replace('-', '/', $bookmarks[$i]->bookmark); ?>"><?php echo str_replace('-', '/', $bookmarks[$i]->bookmark); ?><br /></a></p>
                 
                 <p class="" style="font-style: italic"><span>Saved On :	</span><?php echo $bookmarks[$i]->dateAdded; ?> </p>
-                <form action="<?php echo site_url('editInfo/deleteBookmark/'.($bookmarks[$i]->bookmarkID)) ?>" style="text-align: right" method="post" onsubmit="return(confirmDelete());">
+                
+                <form action="<?php echo site_url('View_bookmark/delete_bookmark/'.($bookmarks[$i]->bookmarkID)) ?>" style="text-align: right" method="post" onsubmit="return(confirmDelete());">
                 	<input type="submit" align="right" class="btn-class" value="Delete"/>
                 </form>
               </div>
